@@ -17,7 +17,7 @@ const getTickets = asyncHandler(async (req, res, next) => {
     next(err);
   } else {
     const tickets = await Ticket.find({ user: req.user.id });
-    res.status(200).json({ tickets });
+    res.status(200).json(tickets);
   }
 });
 
