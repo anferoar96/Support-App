@@ -29,7 +29,7 @@ function Ticket() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [noteText, setnoteText] = useState("");
 
-  const { ticket, isLoading, isSuccess, isError, message } = useSelector(
+  const { ticket, isLoading, isError, message } = useSelector(
     (state) => state.tickets
   );
 
@@ -37,7 +37,6 @@ function Ticket() {
     (state) => state.notes
   );
 
-  const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { ticketId } = useParams();
@@ -48,7 +47,7 @@ function Ticket() {
     }
     dispatch(getSingleTicket(ticketId));
     dispatch(getNotes(ticketId));
-  }, [isError, message, ticketId]);
+  }, [isError, message, ticketId, dispatch]);
 
   const onTicketClose = () => {
     dispatch(closeTicket(ticketId));
