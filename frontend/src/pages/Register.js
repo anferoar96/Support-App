@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 function Register() {
@@ -54,7 +54,11 @@ function Register() {
         email,
         password,
       };
-      dispath(register(userData));
+      const data = dispath(register(userData));
+      if (data) {
+        toast.success("Successfully registered user, please login.");
+      }
+      navigate("/login");
     }
   };
 
